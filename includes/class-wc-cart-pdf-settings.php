@@ -43,6 +43,7 @@ class WC_Cart_PDF_Settings extends WC_Integration {
 		$open_pdf         = get_option( 'wc_cart_pdf_open_pdf', null );
 		$copy_admin       = get_option( 'wc_cart_pdf_copy_admin', null );
 		$show_checkout    = get_option( 'wc_cart_pdf_show_checkout', null );
+		$show_weight 	  = get_option('wc_cart_pdf_show_weight', null);
 		$capture_customer = get_option( 'wc_cart_pdf_capture_customer', null );
 		$unique_increment = get_option( 'wc_cart_pdf_unique_increment', null );
 		$modal_capture    = get_option( 'wc_cart_pdf_modal_capture', null );
@@ -55,6 +56,7 @@ class WC_Cart_PDF_Settings extends WC_Integration {
 			'open_pdf'         => $open_pdf,
 			'copy_admin'       => $copy_admin,
 			'show_checkout'    => $show_checkout,
+			'show_weight' 	   => $show_weight,
 			'capture_customer' => $capture_customer,
 			'unique_increment' => $unique_increment,
 			'modal_capture'    => $modal_capture,
@@ -229,6 +231,13 @@ class WC_Cart_PDF_Settings extends WC_Integration {
 				'title'        => __( 'Show Download Cart as PDF on checkout', 'wc-cart-pdf' ),
 				'description'  => 'If using WooCommerce cart and checkout blocks, manually add the "Cart PDF Button" block to the checkout page.',
 				'id'           => 'wc_cart_pdf_show_checkout',
+				'type'         => 'checkbox',
+				'default'      => '',
+			),
+			'show_weight' => array(
+				'title'        => __( 'Show Total Weight in PDF', 'wc-cart-pdf' ),
+				'description'  => 'If products have a weight assigned, have the total weight off all products in the PDF',
+				'id'           => 'wc_cart_pdf_show_weight',
 				'type'         => 'checkbox',
 				'default'      => '',
 			),

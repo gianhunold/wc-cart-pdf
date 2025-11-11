@@ -134,6 +134,28 @@ $logo     = get_option( 'wc_cart_pdf_logo', get_option( 'woocommerce_email_heade
 				<th class="row-subtotal" colspan="4" style="text-align: right;"><?php esc_html_e( 'Subtotal', 'wc-cart-pdf' ); ?></th>
 				<td class="row-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'wc-cart-pdf' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
 			</tr>
+
+			<?php
+			// Check if "Show Total Weight in PDF" option is enabled
+			if (get_option('wc_cart_pdf_show_weight')):
+				$total_weight = WC()->cart->get_cart_contents_weight();
+
+				if ($total_weight > 0):
+					// Convert grams to kilograms
+					$total_weight_kg = $total_weight / 1000;
+					?>
+					<tr class="cart-total-weight cart-total-row">
+						<th class="row-subtotal" colspan="4" style="text-align: right;">
+							<?php esc_html_e('Total weight', 'wc-cart-pdf'); ?>
+						</th>
+						<td class="row-subtotal" data-title="<?php esc_attr_e('Total weight', 'wc-cart-pdf'); ?>">
+							<?php echo number_format($total_weight_kg, 2, ',', '.') . ' kg'; ?>
+						</td>
+					</tr>
+					<?php
+				endif;
+			endif;
+			?>
 			
 			<?php if ( 0 < WC()->cart->get_shipping_total() ) : ?>
 				<tr class="shipping cart-total-row">
